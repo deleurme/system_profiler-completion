@@ -15,14 +15,11 @@ _system_profiler() {
   commands="-xml -listDataTypes -detailLevel -timeout -usage $(system_profiler -listDataTypes)"
 
 	case "${prev}" in
-
     -detailLevel)
       args="mini basic full" 
-      # app=$(jq .applications._default.link .system_profiler.local)
       COMPREPLY=( $(compgen -W "${args}" -- "${cur}") )
       return 0
       ;;
-
 	esac
   
   COMPREPLY=($(compgen -W "${commands}" -- "${cur}"))
@@ -30,4 +27,3 @@ _system_profiler() {
 }
 
 complete -F _system_profiler system_profiler
-
